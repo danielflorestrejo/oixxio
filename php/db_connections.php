@@ -18,7 +18,6 @@
 	}
 
 	function select_Mysqli() {
-
 		$connectionMysqli = connectionToMysqli();
 		$sql = 'SELECT * FROM visita';
 		$result = $connectionMysqli->query($sql);
@@ -34,4 +33,30 @@
 		$connectionMysqli->close();
 		return $result;
 	}
+
+	function validate_login($usr, $psw) {
+		$connectionMysqli = connectionToMysql();
+		$sql = "SELECT usuario FROM cuenta_usuario WHERE usuario = '{$usr}' AND psw = '{$psw}'";
+		$result = $connectionMysqli->query($sql);
+		$connectionMysqli->close();
+		return $result;
+	}
+
+	function add_newUser() {
+		$connectionMysqli = connectionToMysql();
+		$sql = "SELECT usuario FROM cuenta_usuario WHERE usuario = '{$usr}'";
+		$result = $connectionMysqli->query($sql);
+		if(mysql_num_rows($result) == 0) {
+			$sql= "";
+			$result = "";
+			$sql= "INSERT INTO cuenta_usuario(usuario, psw) VALUES('{$usr}', '{$psw}')";
+			$result = $connectionMysqli->query($sql);
+		} else{
+			$result = "";
+			$result = 0;
+		}
+
+		return $result;
+	}
+
 ?>

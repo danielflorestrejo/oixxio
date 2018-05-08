@@ -92,3 +92,19 @@ function addVisits() {
 function cleanFromVisits() {
 	document.getElementById('formVisits').reset();
 }
+
+function validate_user() {
+
+	$.ajax({
+		type: "POST",
+		url: "../php/visits.php",
+		data: cadena,
+		success: function(r) {
+			if( r == 1 ) {
+				windows.location.replace('../php/visits.php');
+			} else {
+				alertify.alert("No existe el usuario o el password es incorrecta");
+			}
+		}
+	});
+}

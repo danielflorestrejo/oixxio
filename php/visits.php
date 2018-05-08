@@ -1,3 +1,6 @@
+<?php
+	require_once('set_session.php');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
